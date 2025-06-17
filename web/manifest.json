@@ -1,11 +1,11 @@
 {
-    "name": "homework1_veri_tipi_uygulamasi",
-    "short_name": "homework1_veri_tipi_uygulamasi",
+    "name": "flutterodev3",
+    "short_name": "flutterodev3",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
