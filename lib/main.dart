@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterodev3/sonuc.dart';
 
 void main() {
   runApp(KisilikAnketiApp());
@@ -25,7 +26,6 @@ class _KisilikAnketiState extends State<KisilikAnketi> {
   bool resitMi = false;
   bool sigaraKullaniyorMu = false;
   double sigaraSayisi = 0;
-  bool bilgilerGoster = false;
 
   final List<String> cinsiyetListesi = ['Kadın', 'Erkek', 'Diğer'];
 
@@ -117,33 +117,26 @@ class _KisilikAnketiState extends State<KisilikAnketi> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    bilgilerGoster = true;
-                  });
+                  // 📤 Veriyi Sonuç Sayfasına gönder
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SonucSayfasi(
+                        adSoyad: adSoyad,
+                        cinsiyet: secilenCinsiyet ?? 'Belirtilmedi',
+                        resitMi: resitMi,
+                        sigaraKullaniyorMu: sigaraKullaniyorMu,
+                        sigaraSayisi: sigaraSayisi.round(),
+                      ),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepOrange,
                 ),
-                child: Text('Bilgileri gönder'),
+                child: Text('Bilgileri Gönder'),
               ),
             ),
-            if (bilgilerGoster)
-              Container(
-                margin: EdgeInsets.only(top: 24),
-                padding: EdgeInsets.all(16),
-                color: Colors.orange.shade100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Ad Soyad: $adSoyad"),
-                    Text("Cinsiyet: ${secilenCinsiyet ?? 'Seçilmedi'}"),
-                    Text("Reşit mi?: ${resitMi ? 'Evet' : 'Hayır'}"),
-                    Text("Sigara kullanıyor mu?: ${sigaraKullaniyorMu ? 'Evet' : 'Hayır'}"),
-                    if (sigaraKullaniyorMu)
-                      Text("Günlük Sigara Sayısı: ${sigaraSayisi.round()}"),
-                  ],
-                ),
-              ),
           ],
         ),
       ),
